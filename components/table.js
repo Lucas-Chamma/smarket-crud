@@ -36,7 +36,7 @@ export default function Table(){
             <thead>
              <tr className="bg-gray-800">
                 <th>
-                    <span className="text-gray-200">Codigo</span>
+                    <span className="text-gray-200">Sku</span>
                 </th>
                 <th>
                     <span className="text-gray-200">Departamento</span>
@@ -45,16 +45,16 @@ export default function Table(){
                     <span className="text-gray-200">Nome</span>
                 </th>
                 <th>
-                    <span className="text-gray-200">Fabricante</span>
+                    <span className="text-gray-200">Marca</span>
+                </th>
+                <th>
+                    <span className="text-gray-200">Mercados</span>
                 </th>
                 <th>
                     <span className="text-gray-200">Tamanho</span>
                 </th>
                 <th>
                     <span className="text-gray-200">Unidade</span>
-                </th>
-                <th >
-                    <span className="text-gray-200">Preço</span>
                 </th>
                 <th >
                     <span className="text-gray-200">Status</span>
@@ -79,7 +79,7 @@ export default function Table(){
     )
 }
 
-function Tr({_id,codigo,departamento,nome,fabricante,tamanho,unidade,preco,status}){
+function Tr({_id,nome,departamento,descricao,marca,mercados,sku,tamanho,unidade,status}){
     
     
     const visible = useSelector((state) => state.app.client.toggleForm)
@@ -98,10 +98,23 @@ function Tr({_id,codigo,departamento,nome,fabricante,tamanho,unidade,preco,statu
         }
     }
 
+    const renderMercados = () => {
+        if (mercados && mercados.length > 0) {
+          // Caso existam mercados definidos
+          return mercados.map((mercado, index) => (
+            <span key={index}>{mercado.nome}{index !== mercados.length - 1 ? ', ' : ''}</span>
+          ));
+        } else {
+          // Caso não existam mercados definidos
+          return <span>Sem resultado</span>;
+        }
+      };
+
+
     return(
         <tr className="bg-gray-50 text-center">
             <td className="px-2 py-2">
-                <span>{codigo || "Sem resultado"}</span>
+                <span>{sku || "Sem resultado"}</span>
             </td>
             <td className="px-2 py-2">
                 <span>{departamento || "Sem resultado"}</span>
@@ -110,16 +123,16 @@ function Tr({_id,codigo,departamento,nome,fabricante,tamanho,unidade,preco,statu
                 <span className="inline-block max-w-xs truncate">{nome || "Sem resultado"}</span>
             </td>
             <td className="px-2 py-2">
-                <span>{fabricante || "Sem resultado"}</span>
+                <span>{marca || "Sem resultado"}</span>
+            </td>
+            <td className="px-2 py-2">
+                {renderMercados()}
             </td>
             <td className="px-2 py-2">
                 <span>{tamanho || "Sem resultado"}</span>
             </td>
             <td className="px-2 py-2">
                 <span>{unidade || "Sem resultado"}</span>
-            </td>
-            <td className="px-2 py-2">
-                <span>{preco || "Sem resultado"}</span>
             </td>
             <td className="px-2 py-2">
                 <button className="cursor"><span className={`${status == "Active" ? 'bg-green-500':'bg-rose-500'} text-white px-5 py-1 rounded-full`}>{status}</span></button>

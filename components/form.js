@@ -1,25 +1,27 @@
 import AddUserForm from "./addUserform";
 import UpdateUserForm from "./updateUserform";
 import { useSelector } from "react-redux";
-import { useReducer
- } from "react";
-const formReducer = (state,event) => {
-    return{
-        ...state,
-        [event.target.name]: event.target.value
-    }
-}
+import { useReducer } from "react";
 
-export default function Form(){
+const formReducer = (state, event) => {
+  return {
+    ...state,
+    [event.target.name]: event.target.value,
+  };
+};
 
-    const [formData,setFormData]= useReducer(formReducer, {})
-    const formId = useSelector((state) =>state.app.client.formId)
-    
+export default function Form() {
+  const [formData, setFormData] = useReducer(formReducer, {});
+  const formId = useSelector((state) => state.app.client.formId);
 
-    return(
-        <div className='container mx-auto py-5'>
-            {formId ? UpdateUserForm({formId,formData,setFormData}) : AddUserForm({formData,setFormData})}
-        </div>
-    
-    )
+  return (
+    <div className="container mx-auto py-5">
+      {formId ? (
+        <UpdateUserForm formId={formId} formData={formData} setFormData={setFormData} setMercados={setMercados}
+        />
+      ) : (
+        <AddUserForm formData={formData} setFormData={setFormData} />
+      )}
+    </div>
+  );
 }
