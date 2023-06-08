@@ -60,21 +60,21 @@ export default function AddUserForm({ formData, setFormData }) {
             <p>Mercado {index}</p>
             <input
                 type="text"
-                onChange={setFormData}
+                onChange={(event) => setFormData(event)}
                 className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
                 name={`mercado${index}Nome`}
                 placeholder="Nome do mercado"
             />
             <input
                 type="text"
-                onChange={setFormData}
+                onChange={(event) => setFormData(event)}
                 className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
                 name={`mercado${index}Cidade`}
                 placeholder="Cidade do mercado"
             />
             <input
                 type="number"
-                onChange={setFormData}
+                onChange={(event) => setFormData(event)}
                 className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
                 name={`mercado${index}Preco`}
                 placeholder="Preço do produto no mercado"
@@ -88,35 +88,35 @@ export default function AddUserForm({ formData, setFormData }) {
     return (
         <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
             <div className="input-type">
-                <input type="number" onChange={setFormData} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="sku" placeholder="Sku" />
+                <input type="number" onChange={(event) => setFormData(event)} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="sku" placeholder="Sku" />
             </div>
             <div className="input-type">
-                <input type="text" onChange={setFormData} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="departamento" placeholder="Departamento" />
+                <input type="text" onChange={(event) => setFormData(event)} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="departamento" placeholder="Departamento" />
             </div>
             <div className="input-type">
-                <input type="text" onChange={setFormData} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="nome" placeholder="Nome do produto" />
+                <input type="text" onChange={(event) => setFormData(event)} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="nome" placeholder="Nome do produto" />
             </div>
             <div className="input-type">
-                <input type="text" onChange={setFormData} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="tamanho" placeholder="Tamanho" />
+                <input type="text" onChange={(event) => setFormData(event)} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="tamanho" placeholder="Tamanho" />
             </div>
             <div className="input-type">
-                <input type="text" onChange={setFormData} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="unidade" placeholder="Unidade de medida" />
+                <input type="text" onChange={(event) => setFormData(event)} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="unidade" placeholder="Unidade de medida" />
             </div>
             <div className="input-type">
-                <input type="text" onChange={setFormData} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="descricao" placeholder="Descrição" />
+                <input type="text" onChange={(event) => setFormData(event)} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="descricao" placeholder="Descrição" />
             </div>
             <div className="input-type">
-                <input type="text" onChange={setFormData} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="marca" placeholder="Fabricante / Marca" />
+                <input type="text" onChange={(event) => setFormData(event)} className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900" name="marca" placeholder="Fabricante / Marca" />
             </div>
             <div className="flex mx-2 gap-10 items-center">
                 <div className="form-check">
-                    <input type="radio" onChange={setFormData} value="Active" name="status" id="radioDefault1" />
+                    <input type="radio" onChange={(event) => setFormData(event)} value="Active" name="status" id="radioDefault1" />
                     <label htmlFor="radioDefault1" className="inline-block text-gray-800 px-1">
                         Active
                     </label>
                 </div>
                 <div className="form-check">
-                    <input type="radio" onChange={setFormData} value="Inactive" name="status" id="radioDefault2" />
+                    <input type="radio" onChange={(event) => setFormData(event)} value="Inactive" name="status" id="radioDefault2" />
                     <label htmlFor="radioDefault2" className="inline-block text-gray-800 px-1">
                         Inactive
                     </label>
