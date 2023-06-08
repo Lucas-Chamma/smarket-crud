@@ -17,7 +17,7 @@ export default function Form() {
   return (
     <div className="container mx-auto py-5">
       {formId ? (
-        <UpdateUserForm formId={formId} formData={formData} setFormData={setFormData} setMercados={setMercados}
+        <UpdateUserForm formId={formId} formData={formData} setFormData={setFormData}
         />
       ) : (
         <AddUserForm formData={formData} setFormData={setFormData} />

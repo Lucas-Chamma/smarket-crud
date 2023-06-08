@@ -1,13 +1,10 @@
-import { useReducer } from "react";
-import Sucess from "./success";
-import Bug from "./bug";
 import { AiOutlineCheck } from 'react-icons/ai'
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { helperGetProduto, helperGetProdutos, helperUpdateProduto } from "@/lib/helper";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
 
-export default function UpdateUserForm({ formId, formData, setFormData, setMercados }) {
+export default function UpdateUserForm({ formId, formData, setFormData}) {
     const queryClient = useQueryClient();
     const { isLoading, isError, data, error } = useQuery(['produtos', formId], () => helperGetProduto(formId));
     const updateMutation = useMutation((newData) => helperUpdateProduto(formId, newData), {
@@ -20,7 +17,7 @@ export default function UpdateUserForm({ formId, formData, setFormData, setMerca
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error</div>;
 
-    const { sku, nome, departamento, descricao, marca, tamanho, unidade, preco, mercados,status } = data;
+    const { sku, nome, departamento, descricao, marca, tamanho, unidade, mercados, preco,status } = data;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,20 +26,22 @@ export default function UpdateUserForm({ formId, formData, setFormData, setMerca
     };
 
     const handleMercadoChange = (index, field, value) => {
-        setMercados((prevMercados) => {
-          const updatedMercados = [...prevMercados];
-          const updatedMercado = { ...updatedMercados[index], [field]: value };
-          updatedMercados[index] = updatedMercado;
-          return updatedMercados;
+        const updatedMercados = mercados.map((mercado, mercadoIndex) => {
+          if (index === mercadoIndex) {
+            return {
+              ...mercado,
+              [field]: value,
+            };
+          }
+          return mercado;
         });
-      };
-
-    const handleRemoveMercado = (index) => {
-        setMercados((prevMercados) => {
-            const updatedMercados = [...prevMercados];
-            updatedMercados.splice(index, 1);
-            return updatedMercados;
-        });
+      
+        const updatedFormData = {
+          ...formData,
+          mercados: updatedMercados,
+        };
+      
+        updateMutation.mutate(updatedFormData);
     };
 
     const mercadoFields = mercados.map((mercado, index) => (
@@ -50,37 +49,24 @@ export default function UpdateUserForm({ formId, formData, setFormData, setMerca
           <p>Mercado {index + 1}</p>
           <input
             type="text"
-             onChange={(e) =>
-                handleMercadoChange(index, mercado.nome, e.target.value)
-            }
             defaultValue={mercado.nome}
             className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
-            name={`mercado${index}Nome`}
             placeholder="Nome do mercado"
+            onChange={(e) => handleMercadoChange(index, 'nome', e.target.value)} // Chame a função handleMercadoChange no evento onChange
           />
           <input
             type="text"
-            onChange={(e) =>
-                handleMercadoChange(index, mercado.cidade, e.target.value)
-            }
             defaultValue={mercado.cidade}
             className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
-            name={`mercado${index}Cidade`}
             placeholder="Cidade do mercado"
+            onChange={(e) => handleMercadoChange(index, 'cidade', e.target.value)} // Chame a função handleMercadoChange no evento onChange
           />
           <input
-            type="number"
-            onChange={(e) =>
-                handleMercadoChange(index, mercado.preco, e.target.value)
-            }
-            value={mercado.preco}
+            defaultValue={mercado.preco}
             className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
-            name={`mercado${index}Preco`}
             placeholder="Preço do produto no mercado"
+            onChange={(e) => handleMercadoChange(index, 'preco', e.target.value)} // Chame a função handleMercadoChange no evento onChange
           />
-          <button type="button" onClick={() => handleRemoveMercado(index)}>
-            Remover Mercado {index + 1}
-          </button>
         </div>
       ));
 
