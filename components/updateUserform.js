@@ -90,6 +90,7 @@ export default function UpdateUserForm({ formId }) {
             />
             <input
                 type="number"
+                step="0.01"
                 defaultValue={mercado.preco}
                 className="border w-2/6 px-5 py-5 focus:outline-none rounded-md text-gray-900"
                 name={`mercado${index}preco`}
