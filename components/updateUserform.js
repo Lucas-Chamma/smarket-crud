@@ -71,27 +71,28 @@ export default function UpdateUserForm({ formId }) {
     const mercadoFields = mercados.map((mercado, index) => (
         <div key={index}>
             <p>Mercado {index + 1}</p>
-            <input
-                type="text"
-                defaultValue={mercado.nome}
-                className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
-                name={`mercado${index}Nome`}
-                placeholder="Nome do mercado"
-                onChange={(e) => handleMercadoChange(index, 'nome', e.target.value)}
-            />
+            <select className="border w-2/6 px-5 py-5 focus:outline-none rounded-md text-gray-900"  name={`mercado${index}nome`} onChange={(e) => handleMercadoChange(index, 'nome', e.target.value)}>
+                <option value={mercado.nome} selected>{mercado.nome}</option>
+                <option value="Caetano">Caetano</option>
+                <option value="Zarelli">Zarelli</option>
+                <option value="Spasso">Spasso</option>
+                <option value="Enxuto">Enxuto</option>
+                <option value="Irmãos Gonçalves">Irmãos Gonçalves</option>
+                <option value="São João">São João</option>
+            </select>
             <input
                 type="text"
                 defaultValue={mercado.cidade}
-                className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
-                name={`mercado${index}Cidade`}
+                className="border w-2/6 px-5 py-5 focus:outline-none rounded-md text-gray-900"
+                name={`mercado${index}cidade`}
                 placeholder="Cidade do mercado"
                 onChange={(e) => handleMercadoChange(index, 'cidade', e.target.value)}
             />
             <input
                 type="number"
-                value={mercado.preco}
-                className="border w-full px-5 py-5 focus:outline-none rounded-md text-gray-900"
-                name={`mercado${index}Preco`}
+                defaultValue={mercado.preco}
+                className="border w-2/6 px-5 py-5 focus:outline-none rounded-md text-gray-900"
+                name={`mercado${index}preco`}
                 placeholder="Preço do produto no mercado"
                 onChange={(e) => handleMercadoChange(index, 'preco', e.target.value)}
             />
