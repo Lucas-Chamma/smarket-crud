@@ -18,5 +18,5 @@ const produtoSchema = new Schema({
     unidade: String
 })
 
-const Produtos = models.produtos || model('produtos',produtoSchema)
+const Produtos = models.produto || model('produto', produtoSchema)
 export default Produtos;
