@@ -3,10 +3,13 @@ import { useQueryClient, useMutation } from 'react-query';
 import { helperGetProduto, helperUpdateProduto, helperGetProdutos } from '../lib/helper';
 import { useQuery } from 'react-query';
 import { AiOutlineCheck } from 'react-icons/ai';
+import { useDispatch } from 'react-redux'
+import { toggleChangeAction } from '@/redux/reducer'
 
 export default function UpdateUserForm({ formId }) {
     const queryClient = useQueryClient();
     const [formData, setFormData] = useState({});
+    const dispatch = useDispatch()
 
     const { isLoading, isError, data, error } = useQuery(['produtos', formId], () => helperGetProduto(formId));
     const updateMutation = useMutation((newData) => helperUpdateProduto(formId, newData), {
@@ -21,12 +24,13 @@ export default function UpdateUserForm({ formId }) {
 
     const { sku, nome, departamento, descricao, marca, tamanho, unidade, mercados, preco, status } = data;
 
-    console.log(mercados)
-
+    
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         let updated = Object.assign({}, data, formData);
-        await updateMutation.mutate(updated);
+        updateMutation.mutate(updated);
+        dispatch(toggleChangeAction())
     };
 
     const handleMercadoChange = (index, field, value) => {
