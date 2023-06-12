@@ -21,6 +21,8 @@ export default function UpdateUserForm({ formId }) {
 
     const { sku, nome, departamento, descricao, marca, tamanho, unidade, mercados, preco, status } = data;
 
+    console.log(mercados)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let updated = Object.assign({}, data, formData);
