@@ -22,12 +22,12 @@ export default function Table(){
 
     return (
     <>
-        <div class="relative flex items-center font-medium text-xl p-4">
-                <BiSearch class="w-5 h-5 absolute ml-3 pointer-events-none" />
+        <div className="relative flex items-center font-medium text-xl p-4">
+                <BiSearch className="w-5 h-5 absolute ml-3 pointer-events-none" />
                 <input
                     type="text"
                     placeholder="Encontrar produtos"
-                    class="w-full pr-3 pl-10 py-4 font-semibold rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2"
+                    className="w-full pr-3 pl-10 py-4 font-semibold rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2"
                     onChange={(e) => buscar(e.target.value)} 
                     value={busca?.nome}
                 />

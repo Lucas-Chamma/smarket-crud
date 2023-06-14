@@ -71,9 +71,8 @@ export default function UpdateUserForm({ formId }) {
     const mercadoFields = mercados.map((mercado, index) => (
         <div key={index}>
             <p>Mercado {index + 1}</p>
-            <select className="border w-2/6 px-5 py-5 focus:outline-none rounded-md text-gray-900"  name={`mercado${index}nome`} onChange={(e) => handleMercadoChange(index, 'nome', e.target.value)}>
-                <option value={mercado.nome} selected>{mercado.nome}</option>
-                <option value="Caetano">Caetano</option>
+            <select defaultValue={mercado.nome} className="border w-2/6 px-5 py-5 focus:outline-none rounded-md text-gray-900"  name={`mercado${index}nome`} onChange={(e) => handleMercadoChange(index, 'nome', e.target.value)}>
+                <option value="Caetano" >Caetano</option>
                 <option value="Zarelli">Zarelli</option>
                 <option value="Spasso">Spasso</option>
                 <option value="Enxuto">Enxuto</option>
